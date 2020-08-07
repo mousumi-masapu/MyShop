@@ -51,8 +51,10 @@ namespace MyShop.WebUI.Controllers
             {
                 if (file != null)
                 {
+
                     product.Image = product.Id + Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);
+
                 }
                 context.Insert(product);
                 context.Commit();
@@ -98,11 +100,13 @@ namespace MyShop.WebUI.Controllers
                 {
                     productToEdit.Image = productToEdit.Id + Path.GetExtension(file.FileName);
                     file.SaveAs(Server.MapPath("//Content//ProductImages//") + productToEdit.Image);
+                    //string physicalPath = Path.Combine(Server.MapPath("~/Content/ProductImages/" + productToEdit.Image));
+                    // save image in folder
+                   // file.SaveAs(physicalPath);
                 }
                 productToEdit.Category = product.Category;
                 productToEdit.Name = product.Name;
                 productToEdit.Description = product.Description;
-                productToEdit.Image = product.Image;
                 productToEdit.Price = product.Price;
                 context.Commit();
                 return RedirectToAction("Index");
