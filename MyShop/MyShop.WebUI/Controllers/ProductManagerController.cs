@@ -8,6 +8,7 @@ using MyShop.Core.Contracts;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
+using MyShop.DataAccess.SQL;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -17,17 +18,25 @@ namespace MyShop.WebUI.Controllers
         IRepository<ProductCategory> productCategories;
         public ProductManagerController(IRepository<Product> productContext,IRepository<ProductCategory> productCategoryContext) {
 
-            context = productContext;
-            productCategories = productCategoryContext;
+             context= productContext;
+             productCategories = productCategoryContext;
 
         }
 
-        // GET: ProductManager
-        public ActionResult Index()
+        // GET: ProductManagercontext
+        public ActionResult Index(string category)
         {
 
             List<Product> products = context.Collection().ToList();
-            return View(products);
+
+            //EmployeeContext employeeContext = new EmployeeContext();
+
+            //Employee employee = employeeContext.Employees.Single(emp => emp.EmployeeId == id)
+
+            DataContext productContext = new DataContext();
+            Product filteredProduct = productContext.Products.Single(p =>p.Category == category);
+
+            return View(filteredProduct);
         }
 
         public ActionResult Create()
