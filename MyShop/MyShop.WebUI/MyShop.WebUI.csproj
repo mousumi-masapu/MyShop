@@ -272,6 +272,8 @@
     <Content Include="Views\ProductCategoryManager\Details.cshtml" />
     <Content Include="Views\ProductCategoryManager\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\ProductManager\FilterProduct.cshtml" />
+    <Content Include="Views\Home\FilterProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

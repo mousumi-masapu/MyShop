@@ -1,26 +1,11 @@
-﻿@model IEnumerable<MyShop.Core.Models.Product>
+﻿
+@model IEnumerable<MyShop.Core.Models.Product>
 
 
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="col-md-6">
-    @using (Html.BeginForm("Index", "Home"))
-    {<p>
-            Category: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
-    }
-</div>
-<div class="col-md-12">
-    @foreach (var item in Model)
-    {
-        <li>
-            @Html.ActionLink(item.Category, "FilterProduct", "Home", new { Category = item.Category }, null)
 
-
-        </li>}
-</div>
 <h1>Products</h1>
 @foreach (var item in Model)
 {
@@ -45,8 +30,8 @@
         </div>
     </div>
 }
-<div class="col-md-12">
-    @Html.ActionLink("Back to List", "Index", "ProductManager")
+<div div class="col-md-12">
+    @Html.ActionLink("Back to List", "Index","Home")
 </div>
 <div class="col-md-12 clearfix"></div>
 

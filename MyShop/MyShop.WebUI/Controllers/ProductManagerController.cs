@@ -23,18 +23,25 @@ namespace MyShop.WebUI.Controllers
 
         }
 
-        // GET: ProductManagercontext
-        public ActionResult Index(string category)
+        public ActionResult Index()
         {
 
             List<Product> products = context.Collection().ToList();
+            //DataContext productContext = new DataContext();
+            //List<Product> filteredProduct = productContext.Products.Where(p => p.Category == searchString).ToList();
 
-            //EmployeeContext employeeContext = new EmployeeContext();
+            
+            return View(products);
+        }
 
-            //Employee employee = employeeContext.Employees.Single(emp => emp.EmployeeId == id)
+        // GET: ProductManagercontext
+        public ActionResult FilterProduct(string category)
+        {
+
+            
 
             DataContext productContext = new DataContext();
-            Product filteredProduct = productContext.Products.Single(p =>p.Category == category);
+            List<Product> filteredProduct = productContext.Products.Where(p =>p.Category == category).ToList();
 
             return View(filteredProduct);
         }
