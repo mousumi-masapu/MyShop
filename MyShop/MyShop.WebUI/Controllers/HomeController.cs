@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyShop.Core.ViewModels;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -20,25 +21,42 @@ namespace MyShop.WebUI.Controllers
             productCategories = productCategoryContext;
 
         }
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string Category=null)
         {
 
-            var products = from p in context.Collection()
-                           select p;
-
-
-
-            if (!String.IsNullOrEmpty(searchString))
+            List<Product> products;
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+            if (Category == null)
             {
-                products = products.Where(s => s.Category.Contains(searchString));
+                products = context.Collection().ToList();
             }
+            else
+            {
+                products = context.Collection().Where(p => p.Category == Category).ToList();
+            }
+            ProductListViewModel model = new ProductListViewModel();
+            model.Products= products;
+            model.ProductCategories = categories;
+
+            return View(model);
+
+            //var products = from p in context.Collection()
+            //               select p;
 
 
 
-            return View(products.ToList());
-            //List<Product> products = context.Collection().ToList();
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    products = products.Where(s => s.Category.Contains(searchString));
+            //}
 
-            // return View();
+
+            //return View(products);
+
+            ////return View(products.ToList());
+            ////List<Product> products = context.Collection().ToList();
+
+            //// return View();
         }
         public ActionResult FilterProduct(string category)
         {
