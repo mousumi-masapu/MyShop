@@ -21,6 +21,7 @@ namespace MyShop.WebUI.Controllers
             productCategories = productCategoryContext;
 
         }
+
         public ActionResult Index(string Category=null)
         {
 
@@ -58,6 +59,7 @@ namespace MyShop.WebUI.Controllers
 
             //// return View();
         }
+
         public ActionResult FilterProduct(string category)
         {
 
