@@ -109,6 +109,7 @@ namespace MyShop.Services
                                {
                                    Id = b.Id,
                                    Quantity = b.Quantity,
+                                   ProductName=p.Name,
                                    Image = p.Image,
                                    Price = p.Price
                                }).ToList();
